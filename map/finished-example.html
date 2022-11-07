@@ -32,48 +32,7 @@
       // Step 2. Add custom icon
       
     
-      function getCookie(cname) {
-  var name = cname + "=";
-  var decodedCookie = decodeURIComponent(document.cookie);
-  var ca = decodedCookie.split(';');
-  for(var i = 0; i < ca.length; i++) {
-    var c = ca[i];
-    while (c.charAt(0) == ' ') {
-      c = c.substring(1);
-    }
-    if (c.indexOf(name) == 0) {
-      return c.substring(name.length, c.length);
-    }
-  }
-  return "";
-}
-
-function checkCookie() {
-  var user=getCookie("username");
-  console.log(user);
-  if (user != "" ) {
-    alert("また見てくれてありがとう！" + user);
-  } else {
-     user = prompt("名前を教えてください:","");
-     if (user != "" && user != null) {
-       setCookie("username", user, 30);
-     }
-  }
-}
-
-
-function delCookie()
-{
-  document.cookie = "username=; max-age=0; path=/";
-}     
-      }
-      var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
-
-      var marker = new google.maps.Marker({
-        position: {lat: 56.876285, lng: -5.431914},
-        icon: iconBase + 'flag_maps.png',
-        map: map
-      });
+ 
 
       // Step 3. Add info window
 
