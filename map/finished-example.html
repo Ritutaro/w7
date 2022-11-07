@@ -16,12 +16,12 @@
 
     <div id="map_canvas"></div>
     
-    //
-    <div style="background-color : #CCC;">
-   <input type="button" value="初めての方はこちら" onclick="checkCookie()">
-  <input type="button" value="名前の削除はこちら" onclick="delCookie()">
-  </div>    
-    //  
+  ///////////////////////////////////  
+   <div style="background-color : #CCC;">
+   <input type="button" value="クッキー判定" onclick="checkCookie()">
+  <input type="button" value="クッキー削除" onclick="delCookie()">
+    </div>
+   ////////////////////////////////////// 
     
     <script>
     function initMap() {
@@ -45,13 +45,24 @@
         position: {lat: 56.876285, lng: -5.431914},
         icon: iconBase + 'flag_maps.png',
         map: map
-      });    
- 
+      });  
       
       
       
- 　　　　//
-function setCookie(cname,cvalue,exdays) {
+      // Step 3. Add info window
+
+      var contentString = '<div id="content"><h2 id="firstHeading" class="firstHeading">Glenfinnan Viaduct</h2><p>The Glenfinnan Viaduct is a railway viaduct on the West Highland Line in Glenfinnan,Inverness-shire, Scotland built from 1897 to 1901. Located at the top of Loch Shiel in the West Scottish Highlands, the viaduct overlooks the Glenfinnan Monument and the waters of Loch Shiel./p></div>';
+
+      var infowindow = new google.maps.InfoWindow({
+        content: contentString
+      });
+
+      marker.addListener('click', function() {
+        infowindow.open(map, marker);
+      });
+    }
+    //////////////////////////////////
+    function setCookie(cname,cvalue,exdays) {
   var d = new Date();
   d.setTime(d.getTime() + (exdays*24*60*60*1000));
   var expires = "expires=" + d.toGMTString();
@@ -78,7 +89,7 @@ function checkCookie() {
   var user=getCookie("username");
   console.log(user);
   if (user != "" ) {
-    alert("今日は" + user + "さん");
+    alert("また見てくれてありがとう！" + user);
   } else {
      user = prompt("名前を教えてください:","");
      if (user != "" && user != null) {
@@ -92,25 +103,9 @@ function delCookie()
 {
   document.cookie = "username=; max-age=0; path=/";
 }
-        
-      
 
- //   
-      
-      
-      
-      // Step 3. Add info window
-
-      var contentString = '<div id="content"><h2 id="firstHeading" class="firstHeading">Glenfinnan Viaduct</h2><p>The Glenfinnan Viaduct is a railway viaduct on the West Highland Line in Glenfinnan,Inverness-shire, Scotland built from 1897 to 1901. Located at the top of Loch Shiel in the West Scottish Highlands, the viaduct overlooks the Glenfinnan Monument and the waters of Loch Shiel./p></div>';
-
-      var infowindow = new google.maps.InfoWindow({
-        content: contentString
-      });
-
-      marker.addListener('click', function() {
-        infowindow.open(map, marker);
-      });
-    }
+    
+    ///////////////////////////////
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAiV2ZbFIYuD3N4hzGLstSn2e4ZG5A7QlU&callback=initMap"
     async defer></script>
