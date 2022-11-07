@@ -30,8 +30,13 @@
       var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 
       // Step 2. Add custom icon
-      
-    
+      var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+
+      var marker = new google.maps.Marker({
+        position: {lat: 53.480759, lng: -2.242631},
+        icon: iconBase + 'flag_maps.png',
+        map: map
+      });    
  
 
       // Step 3. Add info window
