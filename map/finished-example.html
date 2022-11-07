@@ -43,47 +43,30 @@
       
       
  　　　　//
-      function setCookie(cname,cvalue,exdays) {
-  var d = new Date();
-  d.setTime(d.getTime() + (exdays*24*60*60*1000));
-  var expires = "expires=" + d.toGMTString();
-  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-}
+let myButton = document.querySelector('button');
+let myHeading = document.querySelector('h1');
 
-function getCookie(cname) {
-  var name = cname + "=";
-  var decodedCookie = decodeURIComponent(document.cookie);
-  var ca = decodedCookie.split(';');
-  for(var i = 0; i < ca.length; i++) {
-    var c = ca[i];
-    while (c.charAt(0) == ' ') {
-      c = c.substring(1);
-    }
-    if (c.indexOf(name) == 0) {
-      return c.substring(name.length, c.length);
-    }
-  }
-  return "";
-}
-
-function checkCookie() {
-  var user=getCookie("username");
-  console.log(user);
-  if (user != "" ) {
-    alert("また見てくれてありがとう！" + user);
+function setUserName() {
+  let myName = prompt('Please enter your name.');
+  if(!myName) {
+    setUserName();
   } else {
-     user = prompt("名前を教えてください:","");
-     if (user != "" && user != null) {
-       setCookie("username", user, 30);
-     }
+    localStorage.setItem('name', myName);
+    myHeading.innerHTML = 'Mozilla is cool, ' + myName;
   }
 }
 
+if(!localStorage.getItem('name')) {
+  setUserName();
+} else {
+  let storedName = localStorage.getItem('name');
+  myHeading.innerHTML = 'Mozilla is cool, ' + storedName;
+}
 
-function delCookie()
-{
-  document.cookie = "username=; max-age=0; path=/";
-}      
+myButton.onclick = function() {
+  setUserName();
+}
+
  //   
       
       
